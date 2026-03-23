@@ -34,14 +34,172 @@ a {
   text-decoration: none;
 }
 
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  cursor: pointer;
+}
+
 #root {
   min-height: 100vh;
 }
 
+.app-shell {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.welcome-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background:
+    radial-gradient(circle at top, rgba(40, 111, 224, 0.25), transparent 38%),
+    rgba(3, 7, 17, 0.82);
+  backdrop-filter: blur(16px);
+}
+
+.welcome-card {
+  position: relative;
+  width: min(520px, 100%);
+  padding: 2rem;
+  border-radius: 32px;
+  text-align: center;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    rgba(8, 16, 27, 0.92);
+  border: 1px solid rgba(124, 247, 200, 0.14);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  animation: rise-in 650ms ease;
+}
+
+.welcome-orb,
+.ambient {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(14px);
+  opacity: 0.55;
+  animation: drift 10s ease-in-out infinite;
+}
+
+.orb-one,
+.ambient-one {
+  background: rgba(124, 247, 200, 0.16);
+}
+
+.orb-two,
+.ambient-two {
+  background: rgba(47, 115, 255, 0.18);
+}
+
+.orb-one {
+  width: 14rem;
+  height: 14rem;
+  top: 8%;
+  left: 8%;
+}
+
+.orb-two {
+  width: 18rem;
+  height: 18rem;
+  right: 10%;
+  bottom: 8%;
+  animation-delay: -4s;
+}
+
 .page-shell {
+  position: relative;
   width: min(1180px, calc(100% - 2rem));
   margin: 0 auto;
   padding: 1.25rem 0 4rem;
+}
+
+.page-shell.is-hidden {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.page-shell.is-visible {
+  animation: fade-page 500ms ease;
+}
+
+.ambient {
+  z-index: -1;
+}
+
+.ambient-one {
+  width: 18rem;
+  height: 18rem;
+  top: 2rem;
+  right: 8rem;
+}
+
+.ambient-two {
+  width: 16rem;
+  height: 16rem;
+  left: -4rem;
+  top: 22rem;
+  animation-delay: -3s;
+}
+
+.welcome-photo-ring,
+.profile-visual {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(124, 247, 200, 0.35), rgba(38, 119, 255, 0.25));
+}
+
+.welcome-photo-ring {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 1.1rem;
+  padding: 0.5rem;
+  box-shadow: 0 0 0 1px rgba(124, 247, 200, 0.15);
+}
+
+.welcome-photo-ring img,
+.profile-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.welcome-tag {
+  margin: 0;
+  color: var(--accent);
+  font-family: "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.welcome-card h1 {
+  margin: 0.8rem 0 0.5rem;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 0.95;
+}
+
+.welcome-copy {
+  max-width: 38ch;
+  margin: 0 auto;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.welcome-actions {
+  display: flex;
+  gap: 0.9rem;
+  justify-content: center;
+  margin-top: 1.6rem;
+  flex-wrap: wrap;
 }
 
 .topbar {
@@ -178,7 +336,7 @@ a {
 .project-card,
 .skills-card,
 .contact-card,
-.terminal-card {
+.profile-card {
   background: var(--panel);
   border: 1px solid var(--panel-border);
   border-radius: 24px;
@@ -189,29 +347,28 @@ a {
   padding: 1rem;
 }
 
-.terminal-card {
-  overflow: hidden;
-  backdrop-filter: blur(12px);
+.profile-card {
+  padding: 1.4rem;
+  text-align: center;
 }
 
-.terminal-top {
-  display: flex;
-  gap: 0.5rem;
-  padding: 0.9rem 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+.profile-visual {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 1.1rem;
+  padding: 0.45rem;
+  box-shadow: 0 0 0 1px rgba(124, 247, 200, 0.15);
 }
 
-.terminal-top span {
-  width: 0.8rem;
-  height: 0.8rem;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.18);
+.profile-card h3 {
+  margin: 0.4rem 0 0.6rem;
+  font-size: 1.45rem;
 }
 
-.terminal-body {
-  padding: 1.4rem 1rem 1.25rem;
-  font-family: "IBM Plex Mono", monospace;
-  color: var(--accent);
+.profile-copy {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
 }
 
 .stats-grid {
@@ -336,6 +493,39 @@ a {
   color: var(--accent);
 }
 
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -18px, 0);
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fade-page {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 @media (max-width: 960px) {
   .hero-grid,
   .about-grid,
@@ -354,11 +544,26 @@ a {
     width: min(100% - 1.25rem, 100%);
   }
 
+  .welcome-card {
+    padding: 1.5rem;
+  }
+
+  .welcome-photo-ring,
+  .profile-visual {
+    width: 150px;
+    height: 150px;
+  }
+
   .topbar,
   .nav-links,
-  .hero-actions {
+  .hero-actions,
+  .welcome-actions {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .welcome-actions {
+    align-items: stretch;
   }
 
   .hero-highlights {
