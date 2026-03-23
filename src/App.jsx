@@ -268,9 +268,8 @@ export default function App() {
 
             <div className="contact-card">
               <p>
-                I am looking to keep learning, grow through real work, and
-                connect with opportunities related to AI, technology, and web
-                development.
+               I am actively seeking internship opportunities and ready to work on live projects to gain real-world experience.
+              Passionate about learning, building impactful solutions, and growing in AI, technology, and web development.
               </p>
               <div className="contact-links">
                 <a href="mailto:rsai98849@gmail.com">rsai98849@gmail.com</a>
