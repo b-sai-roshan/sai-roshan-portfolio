@@ -38,7 +38,7 @@ export default function App() {
     <div className="page-shell">
       <header className="hero">
         <nav className="topbar">
-          <span className="brand">PORTFOLIO//01</span>
+          <span className="brand"></span>
           <div className="nav-links">
             <a href="#projects">Projects</a>
             <a href="#about">About</a>
