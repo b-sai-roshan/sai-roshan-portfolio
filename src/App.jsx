@@ -1,5 +1,3 @@
-import React from "react";
-
 const learningAreas = [
   {
     title: "AI-Assisted Website Creation",
@@ -33,14 +31,32 @@ const skills = [
   "Leadership"
 ];
 
+const strengths = [
+  {
+    title: "Fast Learner",
+    description:
+      "I adapt quickly, learn new tools with curiosity, and improve by building consistently."
+  },
+  {
+    title: "AI-First Thinking",
+    description:
+      "I enjoy using AI to explore ideas, improve workflows, and create better digital experiences."
+  },
+  {
+    title: "Team Leadership",
+    description:
+      "I communicate clearly, coordinate well with people, and feel confident taking responsibility."
+  }
+];
+
 export default function App() {
   return (
     <div className="page-shell">
       <header className="hero">
         <nav className="topbar">
-          <span className="brand"></span>
+          <span className="brand">B Sai Roshan</span>
           <div className="nav-links">
-            <a href="#projects">Projects</a>
+            <a href="#projects">Journey</a>
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
           </div>
@@ -48,23 +64,37 @@ export default function App() {
 
         <div className="hero-grid">
           <section className="hero-copy">
-            <p className="eyebrow">Student Portfolio | B.Tech AIML</p>
+            <p className="eyebrow">Student Portfolio | Bangalore</p>
             <h1>
-              B Sai Roshan is an AIML student exploring AI, web development,
-              and creative digital building.
+              <span>AI-focused student.</span>
+              <span>Creative builder.</span>
+              <span>Future-ready teammate.</span>
             </h1>
             <p className="hero-text">
               I am Sai Roshan from Bangalore, currently studying B.Tech in
               Artificial Intelligence and Machine Learning at S-VYASA Deemed to
               be University. I enjoy using AI for UI ideas, website creation,
-              and learning how technical products come together.
+              and learning how modern digital products are designed and built.
             </p>
+            <div className="hero-highlights">
+              <span>AIML Student</span>
+              <span>AI + Web Development</span>
+              <span>Open to Learning</span>
+            </div>
             <div className="hero-actions">
               <a className="button primary" href="#projects">
-                View Projects
+                Explore My Journey
+              </a>
+              <a
+                className="button ghost"
+                href="/resume.pdf"
+                target="_blank"
+                rel="noreferrer"
+              >
+                View Resume
               </a>
               <a className="button ghost" href="#contact">
-                Contact Me
+                Let's Connect
               </a>
             </div>
           </section>
@@ -97,6 +127,10 @@ export default function App() {
                 <span>Goal: grow and contribute</span>
               </article>
             </div>
+            <div className="focus-card">
+              <p className="focus-label">Current Direction</p>
+              <h3>Building a strong foundation in AI, UI thinking, and web development.</h3>
+            </div>
           </aside>
         </div>
       </header>
@@ -124,10 +158,26 @@ export default function App() {
           </div>
         </section>
 
+        <section className="section" id="strengths">
+          <div className="section-heading">
+            <p className="eyebrow">Why Me</p>
+            <h2>Strengths that shape how I work</h2>
+          </div>
+
+          <div className="strengths-grid">
+            {strengths.map((item) => (
+              <article className="strength-card" key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section className="section about-section" id="about">
           <div className="section-heading">
             <p className="eyebrow">About Me</p>
-            <h2>A portfolio with room to grow</h2>
+            <h2>Student mindset, builder energy</h2>
           </div>
 
           <div className="about-grid">
@@ -173,6 +223,9 @@ export default function App() {
               <a href="mailto:rsai98849@gmail.com">rsai98849@gmail.com</a>
               <a href="tel:9108545253">+91 9108545253</a>
               <a href="#about">Based in Bangalore</a>
+              <a href="/resume.pdf" target="_blank" rel="noreferrer">
+                Resume
+              </a>
             </div>
           </div>
         </section>
